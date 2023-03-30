@@ -1,18 +1,21 @@
 "use strcit";
 
 const id = document.querySelector("#id");
+    nam = document.querySelector("#name");
     password = document.querySelector("#password");
-    loginBtn = document.querySelector("#button");
+    confirmPassword = document.querySelector("#confirm-password");
+    registerBtn = document.querySelector("#button");
+registerBtn.addEventListener("click", register);
 
-loginBtn.addEventListener("click", login);
-
-function login(){
+function register(){
     const req = {
         id : id.value,
+        name : nam.value,
         password : password.value,
+        confirmPassword : confirmPassword.value,
     };
 
-    fetch("/login",{
+    fetch("/register",{
         method : "POST",
         headers : {
             "Content-Type" : "application/json",
@@ -22,12 +25,12 @@ function login(){
         .then((res) => (res.json())
         .then((res) => {
             if (res.success) {
-                location.href = "/";
+                location.href = "/login";
             } else {
                 alert(res.msg);
             }
         })
         .catch((err) => {
-            console.error("로그인 중 에러");
+            console.error("회원가입 중 에러");
         }));
 };
