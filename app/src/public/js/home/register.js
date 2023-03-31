@@ -33,7 +33,8 @@ function register(){
             if (res.success) {
                 location.href = "/login";
             } else {
-                alert(res.msg);
+                if (res.err) alert(res.err);
+                else alert(res.msg);
             }
         })
         .catch((err) => {
